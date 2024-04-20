@@ -16,7 +16,7 @@ def ingest_data():
     with open('clusters_report.txt', 'r') as file:
         data = []
         for i, line in enumerate(file):
-            if i >= 5:  # Las líneas se cuentan desde 0, por lo que la línea 5 es la línea 4 en la cuenta de Python
+            if i >= 3:  # Las líneas se cuentan desde 0, por lo que la línea 5 es la línea 4 en la cuenta de Python
                 columns= line.split()  # Dividir la línea en palabras y agregarla a la lista de datos
                 if len(columns) >=1: # Si la línea tiene al menos una palabra, se puede dividir en columnas
                     try:
@@ -35,5 +35,5 @@ def ingest_data():
     df['principales_palabras_clave'] = df['principales_palabras_clave'].str.replace('.','')
     df.columns= df.columns.str.replace(' ', '_').str.lower()
     return df
-#print(ingest_data())            
+print(ingest_data())       
 
