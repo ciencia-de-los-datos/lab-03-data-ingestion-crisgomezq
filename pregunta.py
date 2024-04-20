@@ -15,12 +15,11 @@ def ingest_data():
 
     with open('clusters_report.txt', 'r') as file:
         data = []
-        for i, line in enumerate(file):
-            if i >= 3:  # Las líneas se cuentan desde 0, por lo que la línea 5 es la línea 4 en la cuenta de Python
-                columns= line.split()  # Dividir la línea en palabras y agregarla a la lista de datos
-                if len(columns) >=1: # Si la línea tiene al menos una palabra, se puede dividir en columnas
+        for line in file:
+            columns= line.split()  # Dividir la línea en palabras y agregarla a la lista de datos
+            if len(columns) >=1: # Si la línea tiene al menos una palabra, se puede dividir en columnas
                     try:
-                        cluster = columns[0] # El cluster es un número
+                        cluster = int(columns[0]) # El cluster es un número
                         cantidad_de_palabras_clave = int(columns[1]) # La cantidad de palabras clave es un número
                         porcentaje_de_palabras_clave = columns[2] # El porcentaje de palabras clave es una palabra seguida de un número
                         principales_palabras_clave= ' '.join(columns[4:]) # Las palabras clave son todas las palabras restantes en la línea
@@ -36,4 +35,3 @@ def ingest_data():
     df.columns= df.columns.str.replace(' ', '_').str.lower()
     return df
 print(ingest_data())       
-
